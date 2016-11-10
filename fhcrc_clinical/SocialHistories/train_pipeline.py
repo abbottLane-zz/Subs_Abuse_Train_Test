@@ -18,9 +18,6 @@ def main():
     # Status classification
     StatusClassificationTraining.train_status_classifier(patients)
 
-    #Shelver.shelve_patients(patients)
-    #patients = Shelver.unshelve_patients()
-
     # Attribute Extraction
     Training_CRFSuite.train(patients)
 
