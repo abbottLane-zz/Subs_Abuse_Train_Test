@@ -15,12 +15,8 @@ def main(run_type=None, tsv_in=""):
     print "Using data_dir: " + DATA_DIR
     #Load Data: load data in either the test or train default configurations
     patients = DataLoader.main("Test")
-    #Shelver.shelve_patients(patients)
-    #patients = Shelver.unshelve_patients()
     # Determine sentence level info
     extract_sentence_level_info(patients)
-    #Shelver.shelve_full_patients(patients)
-    #patients = Shelver.unshelve_full_patients()
     # Determine document level info
     DocFromSents.get_doc_level_info(patients)
     # Determine patient level info
