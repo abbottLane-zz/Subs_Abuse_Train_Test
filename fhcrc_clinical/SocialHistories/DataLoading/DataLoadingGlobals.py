@@ -1,8 +1,3 @@
-from SocialHistories.SystemUtilities.Globals import *
-
-# SERVER = 'hidra-test-lk01.fhcrc.org' # vs hidra-test-db01
-# PROJECT = 'NLP'
-
 # Query result field titles
 SOC_HISTORIES = 'SocialHistories'
 ROWS = 'rows'

@@ -1,8 +1,8 @@
 from Evaluate import *
-from SocialHistories.DataModeling.DataModels import Span
-from SocialHistories.SystemUtilities.Configuration import *
-from SocialHistories.Extraction.EventDetection.Processing import has_overlap
-from SocialHistories.SystemUtilities.Globals import *
+from DataModeling.DataModels import Span
+from SystemUtilities.Configuration import *
+from Extraction.EventDetection.Processing import has_overlap
+from SystemUtilities.Globals import *
 
 
 def evaluate_attributes(patients):

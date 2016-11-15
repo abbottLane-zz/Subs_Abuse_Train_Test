@@ -1,7 +1,8 @@
 import pyodbc
 import platform
-from SocialHistories.DataLoading.DataLoadingGlobals import TEST_JOB_IDS, TRAIN_JOB_IDS, IAA_JOB_IDS, entity_types
-from SocialHistories.DataModeling.DataModels import DocumentEvent, AnnotatedAttribute, Span
+from DataLoading.DataLoadingGlobals import TEST_JOB_IDS, TRAIN_JOB_IDS, IAA_JOB_IDS
+from SystemUtilities.Globals import entity_types
+from DataModeling.DataModels import DocumentEvent, AnnotatedAttribute, Span
 
 
 def main():

@@ -1,7 +1,7 @@
 import re, os
 
-from SocialHistories.SystemUtilities.Globals import *
-from SocialHistories.DataModeling.DataModels import Span
+from SystemUtilities.Globals import *
+from DataModeling.DataModels import Span
 
 
 class KeywordHitJSON:

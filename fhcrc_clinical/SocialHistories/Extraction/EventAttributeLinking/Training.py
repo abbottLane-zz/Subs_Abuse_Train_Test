@@ -1,9 +1,9 @@
 from sklearn.externals import joblib
 import cPickle as Pickle
-from SocialHistories.SystemUtilities.Configuration import *
-from SocialHistories.Extraction import Classification
+from fhcrc_clinical.SocialHistories.SystemUtilities.Configuration import *
+from fhcrc_clinical.SocialHistories.Extraction import Classification
 import Processing
-from SocialHistories.SystemUtilities.Globals import EVENT_FILLER_MODEL_NAME, EVENT_FILLER_FEATMAP_NAME
+from fhcrc_clinical.SocialHistories.SystemUtilities.Globals import EVENT_FILLER_MODEL_NAME, EVENT_FILLER_FEATMAP_NAME
 
 
 def train_event_fillers(patients):

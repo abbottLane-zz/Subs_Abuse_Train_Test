@@ -1,5 +1,5 @@
-from SocialHistories.SystemUtilities.Globals import *
-from SocialHistories.DataModeling.DataModels import Event, PatientAttribute
+from fhcrc_clinical.SocialHistories.SystemUtilities.Globals import *
+from fhcrc_clinical.SocialHistories.DataModeling.DataModels import Event, PatientAttribute
 
 
 def get_patient_level_info(patients):

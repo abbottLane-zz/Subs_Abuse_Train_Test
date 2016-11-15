@@ -1,7 +1,7 @@
 import re
 
-from SocialHistories.Extraction.EventDetection.Processing import load_flor_patients
-from SocialHistories.SystemUtilities import Globals
+from fhcrc_clinical.SocialHistories.Extraction.EventDetection.Processing import load_flor_patients
+from fhcrc_clinical.SocialHistories.SystemUtilities import Globals
 
 
 def get_feature_vectors(sents):

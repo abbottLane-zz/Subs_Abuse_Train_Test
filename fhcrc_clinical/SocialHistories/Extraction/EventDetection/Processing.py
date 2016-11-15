@@ -1,13 +1,13 @@
 import re
 import os
 import string
-from SocialHistories.SystemUtilities.Globals import *
-from SocialHistories.SystemUtilities.Configuration import DATA_DIR
+from fhcrc_clinical.SocialHistories.SystemUtilities.Globals import *
+from fhcrc_clinical.SocialHistories.SystemUtilities.Configuration import DATA_DIR
 import json
 
 
 def load_flor_patients():
-    with open(os.path.join(DATA_DIR, "resources", "Florians_sentence_level_annotations", "sentence_level_annotations.json")) as data_file:
+    with open(os.path.join(DATA_DIR, "FlorianData", "sentence_level_annotations.json")) as data_file:
         data = json.load(data_file)
     return data
 

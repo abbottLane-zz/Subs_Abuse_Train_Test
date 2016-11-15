@@ -2,12 +2,12 @@
 # output evaluation on test data or output results on unlabeled data
 from DataLoading import DataLoader as DataLoader
 from Evaluation import EventAndStatusEvaluate, AttributeEvaluate
-from Postprocessing import postprocessing
 from Extraction import PatientFromDocs, DocFromSents
 from Extraction.AttributeExtraction import Execution_CRFSuite as AttributeExtractionExec
+from Extraction.EventAttributeLinking import Execution as EventFilling
 from Extraction.EventDetection import Execution as EventDetectExecution
 from Extraction.StatusClassification import Execution
-from Extraction.EventAttributeLinking import Execution as EventFilling
+from Postprocessing import postprocessing
 from SystemUtilities.Configuration import *
 
 
@@ -23,8 +23,8 @@ def main(run_type=None, tsv_in=""):
     PatientFromDocs.get_patient_level_info(patients)
     # Post-processing: sets of rules to clean up obvious contradictions
     postprocessing.clean_doc_lvl_predictions(patients)
-    if ENV == RUNTIME_ENV.TEST:
-        evaluate_extraction(patients)
+    # Run evaluation on system classifications
+    evaluate_extraction(patients)
     return patients
 
 

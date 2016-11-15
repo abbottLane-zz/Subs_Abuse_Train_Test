@@ -1,25 +1,20 @@
 # coding=utf-8
-from itertools import chain
 import nltk
-from sklearn.metrics import classification_report, confusion_matrix
-from sklearn.preprocessing import LabelBinarizer
-import sklearn
 import pycrfsuite
-
-from SocialHistories.Extraction.AttributeExtraction.Execution_CRFSuite import test
-from SocialHistories.Extraction.AttributeExtraction.Processing_CRFSuite import sent2features, \
+import os
+from fhcrc_clinical.SocialHistories.Extraction.AttributeExtraction.Processing_CRFSuite import sent2features, \
     get_sentences_with_subsinfo_from_patients, tokenize_sentences, get_sentences_from_patients, standardize_tokens, \
     standardize_tokens_list
-from SocialHistories.SystemUtilities.Configuration import ATTRIB_EXTRACTION_DIR_HOME
-from SocialHistories.SystemUtilities import Debug_Methods
-from SocialHistories.SystemUtilities.Globals import entity_types
+from fhcrc_clinical.SocialHistories.SystemUtilities.Configuration import ATTRIB_EXTRACTION_DIR_HOME
+from fhcrc_clinical.SocialHistories.SystemUtilities import Debug_Methods
+from fhcrc_clinical.SocialHistories.SystemUtilities.Globals import entity_types
 
 
 def train(patients, model_path=ATTRIB_EXTRACTION_DIR_HOME):
     print "training Subs_Amount tagger ..."
     sentence_objs = get_sentences_with_subsinfo_from_patients(patients)
     for type in entity_types:
-        model_name = model_path + r"Models/" + "model-" + type + ".ser.gz"
+        model_name = os.path.join(model_path, "model-" + type + ".ser.gz")
         training_sents, training_labels = load_train_data(sentence_objs,type)
         #  standardize DATES, NUM, AMT
         #training_sents = standardize_tokens_list(training_sents)

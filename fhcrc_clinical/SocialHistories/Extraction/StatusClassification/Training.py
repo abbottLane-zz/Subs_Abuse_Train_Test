@@ -1,10 +1,10 @@
 import cPickle as Pickle
 from sklearn.externals import joblib
 import os
-from SocialHistories.Extraction.Classification import train_classifier
-from SocialHistories.Extraction.StatusClassification.Shared_Processing import get_feature_vectors, flor_get_feature_vectors
-from SocialHistories.SystemUtilities.Configuration import MODEL_DIR
-from SocialHistories.SystemUtilities.Globals import STATUS_CLASSF_FEATMAP_SUFFIX, STATUS_CLASSF_MODEL_SUFFIX, \
+from fhcrc_clinical.SocialHistories.Extraction.Classification import train_classifier
+from fhcrc_clinical.SocialHistories.Extraction.StatusClassification.Shared_Processing import get_feature_vectors, flor_get_feature_vectors
+from fhcrc_clinical.SocialHistories.SystemUtilities.Configuration import MODEL_DIR
+from fhcrc_clinical.SocialHistories.SystemUtilities.Globals import STATUS_CLASSF_FEATMAP_SUFFIX, STATUS_CLASSF_MODEL_SUFFIX, \
     SUBSTANCE_TYPES, TOBACCO
 
 

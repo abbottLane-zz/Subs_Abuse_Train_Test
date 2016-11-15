@@ -1,6 +1,6 @@
-from SocialHistories.SystemUtilities.Globals import STATUS_HIERARCHY, UNKNOWN, entity_types
-from SocialHistories.Extraction.EventAttributeLinking import Execution as EventFilling
-from SocialHistories.DataModeling.DataModels import DocumentEvent, DocumentAttribute, Span
+from fhcrc_clinical.SocialHistories.SystemUtilities.Globals import STATUS_HIERARCHY, UNKNOWN, entity_types
+from fhcrc_clinical.SocialHistories.Extraction.EventAttributeLinking import Execution as EventFilling
+from fhcrc_clinical.SocialHistories.DataModeling.DataModels import DocumentEvent, DocumentAttribute, Span
 
 
 def get_doc_level_info(patients):

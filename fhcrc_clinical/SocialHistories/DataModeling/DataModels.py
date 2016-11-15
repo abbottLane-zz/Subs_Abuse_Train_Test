@@ -1,4 +1,4 @@
-from SocialHistories.SystemUtilities.Globals import *
+from SystemUtilities.Globals import *
 
 
 # Source data data structures

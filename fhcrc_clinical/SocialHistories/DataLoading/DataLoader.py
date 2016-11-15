@@ -2,11 +2,11 @@ import csv
 import os
 import re
 import nltk
-from SocialHistories.DataLoading import Server_Query
-from SocialHistories.DataLoading.Server_Query import get_document_text
-from SocialHistories.DataModeling.DataModels import Document, Event, Patient, Sentence
-from SocialHistories.SystemUtilities import Configuration
-from SocialHistories.Extraction.KeywordSearch import KeywordSearch
+from DataLoading import Server_Query
+from DataLoading.Server_Query import get_document_text
+from DataModeling.DataModels import Document, Event, Patient, Sentence
+from SystemUtilities import Configuration
+from Extraction.KeywordSearch import KeywordSearch
 from os import listdir
 from os.path import isfile, join
 import sys
@@ -17,17 +17,17 @@ sys.setdefaultencoding('utf8')
 def main(environment, tsv_in=""):
     if environment == "Train":
         print "Loading TRAINING data and annotations from labkey server ..."
-        split_set = load_split_info(environment)
+        #split_set = load_split_info(environment)
         annotation_metadata = Server_Query.get_labkey_training_data()
-        labkey_training_patients = load_labkey_patients(annotation_metadata, split_set)
+        labkey_training_patients = load_labkey_patients(annotation_metadata)
         print("Training on " + str(len(labkey_training_patients)) + " patients, " + str(get_num_documents(labkey_training_patients)) + " documents")
         return labkey_training_patients
 
     elif environment == "Test":
         print "Loading TESTING data and annotations from labkey server ..."
-        split_set = load_split_info(environment)
+        #split_set = load_split_info(environment)
         annotation_metadata = Server_Query.get_labkey_test_data()
-        labkey_testing_patients = load_labkey_patients(annotation_metadata, split_set)
+        labkey_testing_patients = load_labkey_patients(annotation_metadata)
         print("Testing on " + str(len(labkey_testing_patients)) + " patients, "+ str(get_num_documents(labkey_testing_patients)) + " documents")
         return labkey_testing_patients
 
@@ -51,10 +51,9 @@ def load_split_info(environment):
     return set(lines)
 
 
-def load_labkey_patients(test_anns, split_set):
+def load_labkey_patients(test_anns):
     # Load full data note repo from which TRAIN or TEST will pick and return a subset of docs
     print "\tLoading full data note repo ..."
-    #noteID_text_dict = load_data_repo(os.path.join(Configuration.DATA_DIR, "output"), split_set)
     noteID_text_dict = get_document_text(test_anns)
     print ("\tBuilding Patients from Labkey data ...")
     labkey_patients = build_patients_from_labkey(test_anns, noteID_text_dict)
