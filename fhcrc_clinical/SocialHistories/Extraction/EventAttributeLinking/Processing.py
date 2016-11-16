@@ -1,7 +1,7 @@
-from fhcrc_clinical.SocialHistories.SystemUtilities.Parameter_Configuration import SURR_WORDS_WINDOW
-from fhcrc_clinical.SocialHistories.SystemUtilities.Globals import KNOWN_SUBSTANCE_ATTRIBS
+from SystemUtilities.Parameter_Configuration import SURR_WORDS_WINDOW
+from SystemUtilities.Globals import KNOWN_SUBSTANCE_ATTRIBS
 from Globals import *
-from fhcrc_clinical.SocialHistories.DataModeling.DataModels import Attribute, Sentence
+from DataModeling.DataModels import Attribute, Sentence
 
 
 def features(sent, previous_sent):

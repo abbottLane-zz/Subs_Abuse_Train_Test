@@ -2,12 +2,12 @@
 import nltk
 import pycrfsuite
 import os
-from fhcrc_clinical.SocialHistories.Extraction.AttributeExtraction.Processing_CRFSuite import sent2features, \
+from Extraction.AttributeExtraction.Processing_CRFSuite import sent2features, \
     get_sentences_with_subsinfo_from_patients, tokenize_sentences, get_sentences_from_patients, standardize_tokens, \
     standardize_tokens_list
-from fhcrc_clinical.SocialHistories.SystemUtilities.Configuration import ATTRIB_EXTRACTION_DIR_HOME
-from fhcrc_clinical.SocialHistories.SystemUtilities import Debug_Methods
-from fhcrc_clinical.SocialHistories.SystemUtilities.Globals import entity_types
+from SystemUtilities.Configuration import ATTRIB_EXTRACTION_DIR_HOME
+from SystemUtilities import Debug_Methods
+from SystemUtilities.Globals import entity_types
 
 
 def train(patients, model_path=ATTRIB_EXTRACTION_DIR_HOME):

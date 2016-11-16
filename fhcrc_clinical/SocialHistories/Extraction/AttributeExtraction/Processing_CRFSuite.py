@@ -1,6 +1,6 @@
 import nltk
 import re
-from fhcrc_clinical.SocialHistories.SystemUtilities.Parameter_Configuration import SENTENCE_TOK_PATTERN
+from SystemUtilities.Parameter_Configuration import SENTENCE_TOK_PATTERN
 
 
 def word2features(sent, i):

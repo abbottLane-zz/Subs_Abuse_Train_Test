@@ -1,11 +1,11 @@
 import nltk
 import pycrfsuite
 
-from fhcrc_clinical.SocialHistories.DataModeling.DataModels import Attribute
-from fhcrc_clinical.SocialHistories.Extraction.AttributeExtraction.Processing_CRFSuite import sent2features, tokenize_sentences
-from fhcrc_clinical.SocialHistories.SystemUtilities.Configuration import ATTRIB_EXTRACTION_DIR_HOME
-from fhcrc_clinical.SocialHistories.SystemUtilities.Globals import entity_types
-from fhcrc_clinical.SocialHistories.SystemUtilities.Parameter_Configuration import SENTENCE_TOK_PATTERN
+from DataModeling.DataModels import Attribute
+from Extraction.AttributeExtraction.Processing_CRFSuite import sent2features, tokenize_sentences
+from SystemUtilities.Configuration import ATTRIB_EXTRACTION_DIR_HOME
+from SystemUtilities.Globals import entity_types
+from SystemUtilities.Parameter_Configuration import SENTENCE_TOK_PATTERN
 import os
 
 def extract(patients, model_path=ATTRIB_EXTRACTION_DIR_HOME):

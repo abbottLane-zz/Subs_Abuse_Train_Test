@@ -1,8 +1,8 @@
-from fhcrc_clinical.SocialHistories.SystemUtilities.Configuration import *
+from SystemUtilities.Configuration import *
 import Processing
-from fhcrc_clinical.SocialHistories.Extraction import Classification
-from fhcrc_clinical.SocialHistories.DataModeling.DataModels import DocumentAttribute
-from fhcrc_clinical.SocialHistories.SystemUtilities.Globals import *
+from Extraction import Classification
+from DataModeling.DataModels import DocumentAttribute
+from SystemUtilities.Globals import *
 
 
 def link_attributes_to_substances(patients):

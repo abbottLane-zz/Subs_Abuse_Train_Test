@@ -1,4 +1,4 @@
-from fhcrc_clinical.SocialHistories.SystemUtilities import Configuration
+from SystemUtilities import Configuration
 import os
 
 

@@ -1,8 +1,8 @@
 import re
 import os
 import string
-from fhcrc_clinical.SocialHistories.SystemUtilities.Globals import *
-from fhcrc_clinical.SocialHistories.SystemUtilities.Configuration import DATA_DIR
+from SystemUtilities.Globals import *
+from SystemUtilities.Configuration import DATA_DIR
 import json
 
 

@@ -2,13 +2,13 @@ import cPickle as Pickle
 from sklearn.externals import joblib
 import numpy as np
 
-from fhcrc_clinical.SocialHistories.DataModeling.DataModels import Event
-from fhcrc_clinical.SocialHistories.Extraction.StatusClassification.Shared_Processing import get_feature_vectors
-from fhcrc_clinical.SocialHistories.SystemUtilities import Debugger
-from fhcrc_clinical.SocialHistories.Extraction import Classification
-from fhcrc_clinical.SocialHistories.Extraction.Classification import vectorize_sentence, classify_many_instances
-from fhcrc_clinical.SocialHistories.SystemUtilities.Configuration import *
-from fhcrc_clinical.SocialHistories.SystemUtilities.Globals import *
+from DataModeling.DataModels import Event
+from Extraction.StatusClassification.Shared_Processing import get_feature_vectors
+from SystemUtilities import Debugger
+from Extraction import Classification
+from Extraction.Classification import vectorize_sentence, classify_many_instances
+from SystemUtilities.Configuration import *
+from SystemUtilities.Globals import *
 
 
 def classify_sentence_status(sentences):
