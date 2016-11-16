@@ -14,7 +14,7 @@ In order run the training and testing pipelines, there are a number of python li
  
 2. ODBC driver and settings config file: <br />
   &nbsp;&nbsp;&nbsp;&nbsp;i. You must have an ODBC driver installed on your machine. <br />
-  &nbsp;&nbsp;&nbsp;&nbsp; ii. This application currently relies on Labkey databases storing training and testing data. In order ensure the program pulls data from the correct sources, you must include a config file at the following location: <br />
+  &nbsp;&nbsp;&nbsp;&nbsp;ii. This application currently relies on Labkey databases storing training and testing data. In order ensure the program pulls data from the correct sources, you must include a config file at the following location: <br />
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a. UNIX: '/etc/nlp-abstraction-pipeline/config/odbc_settings' <br />
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b. WINDOWS: '%USERPROFILE%\AppData\Local\nlp-abstraction-pipeline\config\odbc_settings' <br />
   &nbsp;&nbsp;&nbsp;&nbsp;iii. The config file at the above location should look something like this: <br />
