@@ -1,19 +1,19 @@
 # train classifiers and extractors and output models
 import time
 
-import DataLoading.DataLoader
-from Extraction.EventDetection import Training as EventDetectionTraining
-from Extraction.StatusClassification import Training as StatusClassificationTraining
-from Extraction.EventAttributeLinking import Training as EventFillerTraining
-from Extraction.AttributeExtraction import Training_CRFSuite
-from SystemUtilities.Stopwatch import stopWatch
+from fhcrc_clinical.SocialHistories.DataLoading import DataLoader
+from fhcrc_clinical.SocialHistories.Extraction.EventDetection import Training as EventDetectionTraining
+from fhcrc_clinical.SocialHistories.Extraction.StatusClassification import Training as StatusClassificationTraining
+from fhcrc_clinical.SocialHistories.Extraction.EventAttributeLinking import Training as EventFillerTraining
+from fhcrc_clinical.SocialHistories.Extraction.AttributeExtraction import Training_CRFSuite
+from fhcrc_clinical.SocialHistories.SystemUtilities.Stopwatch import stopWatch
 
 
 def main():
-    start = time.time()  # What in other posts is described is
+    start = time.time()  # Start a timer to see how long training takes
 
     # Load Data
-    patients = DataLoading.DataLoader.main("Train")  # list of filled Patient objects
+    patients = DataLoader.main("Train")  # list of filled Patient objects
 
     # Event Detection
     EventDetectionTraining.train_event_detectors(patients)
