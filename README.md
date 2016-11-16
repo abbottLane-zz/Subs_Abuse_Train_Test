@@ -5,11 +5,11 @@ The training and testing pipelines for the Substance Abuse Detection module in t
 In order run the training and testing pipelines, there are a number of python libraries, a configuration file, and a specific directory structure that must be set up properly:
 
 1. Python2.7 and the following libraries: <br />
-  &nbsp;&nbsp;&nbsp;&nbsp;i. nltk <br />
-  &nbsp;&nbsp;&nbsp;&nbsp;ii. pyodbc <br />
-  &nbsp;&nbsp;&nbsp;&nbsp;iii.NumPy (>= 1.6.1), <br />
-  &nbsp;&nbsp;&nbsp;&nbsp;iv. SciPy (>= 0.9). <br />
-  &nbsp;&nbsp;&nbsp;&nbsp;v. sklearn (Find OS-specific instructions on scikit-learn's sometimes tricky install here: http://scikit-learn.org/stable/install.html) <br />
+  *i. nltk <br />
+  *ii. pyodbc <br />
+  *iii.NumPy (>= 1.6.1), <br />
+  *iv. SciPy (>= 0.9). <br />
+  *v. sklearn (Find OS-specific instructions on scikit-learn's sometimes tricky install here: http://scikit-learn.org/stable/install.html) <br />
   &nbsp;&nbsp;&nbsp;&nbsp;vi. python-crfsuite (>= 0.8.4) <br />
  
 2. ODBC driver and settings config file: <br />
