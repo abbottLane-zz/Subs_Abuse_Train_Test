@@ -11,22 +11,16 @@ from SystemUtilities.Stopwatch import stopWatch
 
 def main():
     start = time.time()  # Start a timer to see how long training takes
-
     # Load Data
     patients = DataLoader.main("Train")  # list of filled Patient objects
-
     # Event Detection
     EventDetectionTraining.train_event_detectors(patients)
-
     # Status classification
     StatusClassificationTraining.train_status_classifier(patients)
-
     # Attribute Extraction
     Training_CRFSuite.train(patients)
-
     # Event Filling
     EventFillerTraining.train_event_fillers(patients)
-
     end = time.time()
     print "Training completed in: " + str(stopWatch(end - start))
 
