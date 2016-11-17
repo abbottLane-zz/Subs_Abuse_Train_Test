@@ -6,7 +6,7 @@ In order run the training and testing pipelines, there are a number of python li
 
 1. Python2.7 and the following libraries: <br />
    i. nltk <br />
-       &nbsp;&nbsp;&nbsp;&nbsp;- After nltk is installed, you must also install the "book" data collection via the nltk.install() comand <br />
+       &nbsp;&nbsp;&nbsp;&nbsp;- After nltk is installed, you must also install the "book" data collection to nltk's default data directories via the nltk.download() comand <br />
    ii. pyodbc <br />
    iii.NumPy (>= 1.6.1), <br />
    iv. SciPy (>= 0.9). <br />
