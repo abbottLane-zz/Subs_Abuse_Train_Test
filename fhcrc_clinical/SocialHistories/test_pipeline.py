@@ -1,7 +1,7 @@
 # extract and output substance information using the models trained in train_models.py
 # output evaluation on test data or output results on unlabeled data
 from DataLoading import DataLoader as DataLoader
-from Evaluation import EventAndStatusEvaluate, AttributeEvaluate
+from Evaluation import WEventAndStatusEvaluate, EventAndStatusEvaluate, AttributeEvaluate
 from Extraction import PatientFromDocs, DocFromSents
 from Extraction.AttributeExtraction import Execution_CRFSuite as AttributeExtractionExec
 from Extraction.EventAttributeLinking import Execution as EventFilling
@@ -49,7 +49,7 @@ def evaluate_extraction(patients):
     EventAndStatusEvaluate.evaluate_event_detection(patients)
 
     # Status classification
-    EventAndStatusEvaluate.evaluate_status_classification(patients)
+    WEventAndStatusEvaluate.evaluate_status_classification(patients)
 
     # Extraction of each attribute
     AttributeEvaluate.evaluate_attributes(patients)

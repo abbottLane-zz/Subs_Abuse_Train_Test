@@ -1,7 +1,7 @@
 from Evaluate import *
 from Extraction.EventDetection.Processing import has_overlap
 from SystemUtilities.Configuration import DATA_DIR
-from SystemUtilities.Globals import UNKNOWN, SUBSTANCE_TYPES
+from SystemUtilities.Globals import UNKNOWN, SUBSTANCE_TYPES, STATUS_LABELS
 import os
 
 def evaluate_status_classification(patients):
@@ -11,12 +11,13 @@ def evaluate_status_classification(patients):
     # Find tp, fp, fn
     for patient in patients:
         for doc in patient.doc_list:
-            # Evaluate each document
-            evaluate_doc_status_classification(doc, doc_eval_data)
+            for label in STATUS_LABELS:
+                # Evaluate each document
+                evaluate_doc_status_classification(doc, doc_eval_data, label)
 
-            # Evaluate each sentence
-            for sent in doc.sent_list:
-                evaluate_sentence_status_classification(sent, sentence_eval_data)
+                # Evaluate each sentence
+                for sent in doc.sent_list:
+                    evaluate_sentence_status_classification(sent, sentence_eval_data, label)
 
     # Precision and recall
     calculate_and_output_eval(sentence_eval_data, doc_eval_data, "statusclassf")
@@ -62,14 +63,14 @@ def calculate_and_output_eval(sentence_eval_data, doc_eval_data, eventDetect_or_
         doc_eval_data[substance].output(doc_filename)
 
 
-def evaluate_sentence_status_classification(sent, sentence_eval_data):
-    if len(sent.predicted_events) > 0:
-        print "DEBUG: " + sent.text
-        tmp=0
+def evaluate_sentence_status_classification(sent, sentence_eval_data, label):
+    # if len(sent.predicted_events) > 0:
+    #     print "DEBUG: " + sent.text
+    #     tmp=0
     gold_subs_status_dict = get_subs_status_dict(sent, "gold")
     predicted_subs_status_dict = get_subs_status_dict(sent, "predicted")
 
-    compare_gold_and_predicted_status(gold_subs_status_dict, predicted_subs_status_dict, sentence_eval_data, sent.text)
+    compare_gold_and_predicted_status(gold_subs_status_dict, predicted_subs_status_dict, sentence_eval_data, sent.text, label)
     pass
 
 
@@ -95,11 +96,11 @@ def get_subs_status_dict(data_obj, gold_or_predicted):
     return subs_status_dict
 
 
-def evaluate_doc_status_classification(doc, doc_eval_data):
+def evaluate_doc_status_classification(doc, doc_eval_data, label):
     gold_subs_status_dict = get_subs_status_dict(doc, "gold")
     predicted_subs_status_dict = get_subs_status_dict(doc, "predicted")
 
-    compare_gold_and_predicted_status(gold_subs_status_dict, predicted_subs_status_dict, doc_eval_data, doc.id)
+    compare_gold_and_predicted_status(gold_subs_status_dict, predicted_subs_status_dict, doc_eval_data, doc.id, label)
     pass
 
 
@@ -112,25 +113,37 @@ def evaluate_doc_event_detection(doc, doc_eval_data):
     pass
 
 
-def compare_gold_and_predicted_status(gold_subs_status_dict, predicted_subs_status_dict, eval_data_per_substance, text):
+def compare_gold_and_predicted_status(gold_subs_status_dict, predicted_subs_status_dict, eval_data_per_substance, text, eval_label):
     """ Count tp,fp, fn for each subs status """
     # Find true positives, false positives
     for subs_type in predicted_subs_status_dict:
-        if subs_type != "Secondhand":
-            if gold_subs_status_dict[subs_type] == predicted_subs_status_dict[subs_type]:
-                if predicted_subs_status_dict[subs_type] != "" and predicted_subs_status_dict[subs_type] != UNKNOWN:
-                    eval_data_per_substance[subs_type].tp += 1
+        gold_label = gold_subs_status_dict[subs_type]
+        predicted_label = predicted_subs_status_dict[subs_type]
+        if predicted_label == eval_label:
+            if gold_label == predicted_label:
+                eval_data_per_substance[subs_type].tp += 1
             else:
-                if predicted_subs_status_dict[subs_type] != "" and predicted_subs_status_dict[subs_type] != UNKNOWN:
-                    eval_data_per_substance[subs_type].fp += 1
-                    eval_data_per_substance[subs_type].fp_values.append(text)
+                eval_data_per_substance[subs_type].fp += 1
+                should = "Should Have: {" + label_text(gold_label) + "}, "
+                was = "Was: {" + predicted_label + "} -- "
+                eval_data_per_substance[subs_type].fp_values.append(should + was+ text)
+
     # find false negatives
     for subs_type in gold_subs_status_dict:
-        if subs_type != "Secondhand":
-            if gold_subs_status_dict[subs_type] != predicted_subs_status_dict[subs_type]:
-                if predicted_subs_status_dict[subs_type] == "" and predicted_subs_status_dict[subs_type] != UNKNOWN:
-                    eval_data_per_substance[subs_type].fn += 1
-                    eval_data_per_substance[subs_type].fn_values.append(text)
+        gold_label = gold_subs_status_dict[subs_type]
+        predicted_label = predicted_subs_status_dict[subs_type]
+        if gold_label == eval_label:
+            if gold_label != predicted_label:
+                eval_data_per_substance[subs_type].fn += 1
+                should = ":::Should Have: {" + label_text(gold_label) + "}, "
+                was = "Was: {" + predicted_label + "} -- "
+                eval_data_per_substance[subs_type].fn_values.append(subs_type + should + was + text)
+
+
+def label_text(label):
+    if label == "" or label == " ":
+        return "UNKNOWN"
+    return label
 
 
 def compare_gold_and_predicted_substances(gold_substs, predicted_substs, eval_data_per_substance, text):
