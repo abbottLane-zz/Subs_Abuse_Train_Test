@@ -46,7 +46,7 @@ def extract_sentence_level_info(patients):
 
 def evaluate_extraction(patients):
     # Event detection
-    EventAndStatusEvaluate.evaluate_event_detection(patients)
+    WEventAndStatusEvaluate.evaluate_event_detection(patients)
 
     # Status classification
     WEventAndStatusEvaluate.evaluate_status_classification(patients)

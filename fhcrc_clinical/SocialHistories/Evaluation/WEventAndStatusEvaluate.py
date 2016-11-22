@@ -4,6 +4,7 @@ from SystemUtilities.Configuration import DATA_DIR
 from SystemUtilities.Globals import UNKNOWN, SUBSTANCE_TYPES, STATUS_LABELS
 import os
 
+
 def evaluate_status_classification(patients):
     """ Evaluate sentence and document level status"""
     sentence_eval_data = {subst: EvaluationData() for subst in SUBSTANCE_TYPES}

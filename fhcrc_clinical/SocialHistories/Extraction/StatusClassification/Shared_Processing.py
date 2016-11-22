@@ -11,7 +11,7 @@ def get_feature_vectors(sents):
         uni_feats, unigrams = get_unigrams(sent.text)
         vectors.update(uni_feats)
         vectors.update(get_bigrams(unigrams))
-        # vectors.update(get_trigrams(unigrams))
+        vectors.update(get_trigrams(unigrams))
         feature_vecs.append(vectors)
     return feature_vecs
 
@@ -40,7 +40,7 @@ def flor_get_feature_vectors():
 
 
 def get_unigrams(sent):
-    unigrams = re.sub('[,.!?:;()~]', '', sent.lower()).split()
+    unigrams = [x.strip(',.!?:;()~') for x in sent.lower().split()]
     uni_feats = dict()
     for i in range(0, len(unigrams), 1):
         replacement = None
@@ -79,4 +79,3 @@ def get_trigrams(input_list):
     for tri in trigrams:
         tri_feats[str(tri[0]) + "_" + str(tri[1]) + "_" + str(tri[2])] = True
     return tri_feats
-

@@ -79,8 +79,6 @@ def split_doc_text(text):
     text = re.sub("\r", "", text)  # Carriage Returns are EVIL !!!!!
     sentences = nltk.tokenize.PunktSentenceTokenizer().sentences_from_text(text.encode("utf8"))
     spans = list(nltk.tokenize.PunktSentenceTokenizer().span_tokenize(text.encode("utf8")))
-
-    #sentences, spans = split_by_double_newline(sentences, spans)
     sentences, spans = split_by_single_newlines(sentences, spans)
     sentences, spans = rejoin_sents_on_leading_punctuation(sentences, spans)
 
@@ -312,6 +310,7 @@ def build_patients_from_labkey(annId_patient_dict, docID_text_dict):
     print("Building Labkey patients ...")
     labkey_patients = get_labkey_patients(labkey_documents)
     return labkey_patients
+
 
 def get_patient_docs(docs):
     documents = list()

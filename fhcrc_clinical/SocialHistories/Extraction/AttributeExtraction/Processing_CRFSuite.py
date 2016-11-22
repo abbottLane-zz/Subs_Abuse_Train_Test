@@ -88,7 +88,7 @@ def tokenize_sentences(sentences, attrib_type=None, training=False):
             tokenized_labels.append(label_toks)
         else:
             for match in nltk.re.finditer(tokenization_pattern, sent_obj.text):
-                word = match.group(0)
+                word = match.group(0).rstrip(".?;:")
                 sentence_toks.append(word)
             tokenized_sentences.append(sentence_toks)
     return tokenized_sentences, tokenized_labels
