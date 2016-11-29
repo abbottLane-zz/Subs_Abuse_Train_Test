@@ -69,20 +69,31 @@ def sentence_features_and_labels(patients):
 
 def flor_get_features(sent_text):
     feats = {}
-    # Unigrams
+    # Unigrams, bigrams
     grams = tokenize(sent_text)
     for gram in grams:
         feats[gram] = True
+
+    feats.update(get_bigrams(grams))
     return feats
 
 def get_features(sent_obj):
     feats = {}
-    # Unigrams
+    # Unigrams, bigrams
     grams = tokenize(sent_obj.text)
     for gram in grams:
         feats[gram] = True
 
+    feats.update(get_bigrams(grams))
     return feats
+
+
+def get_bigrams(input_list):
+    bigrams = zip(input_list, input_list[1:])
+    bi_feats = dict()
+    for bigram in bigrams:
+        bi_feats[str(bigram[0]) + "_" + str(bigram[1])] = True
+    return bi_feats
 
 
 def tokenize(sent_text):

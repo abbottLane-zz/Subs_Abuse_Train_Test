@@ -12,7 +12,6 @@ from SystemUtilities.Globals import *
 
 
 def classify_sentence_status(sentences):
-
     for event_type in SUBSTANCE_TYPES:
         # load classifiers and feature map
         classifier, feature_map = load_classifier(event_type)

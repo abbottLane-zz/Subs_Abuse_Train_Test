@@ -125,8 +125,8 @@ def compare_gold_and_predicted_status(gold_subs_status_dict, predicted_subs_stat
                 eval_data_per_substance[subs_type].tp += 1
             else:
                 eval_data_per_substance[subs_type].fp += 1
-                should = "Should Have: {" + label_text(gold_label) + "}, "
-                was = "Was: {" + predicted_label + "} -- "
+                should = "GOLD: {" + label_text(gold_label) + "}, "
+                was = "PREDICTED: {" + predicted_label + "} -- "
                 eval_data_per_substance[subs_type].fp_values.append(should + was+ text)
 
     # find false negatives
@@ -136,9 +136,9 @@ def compare_gold_and_predicted_status(gold_subs_status_dict, predicted_subs_stat
         if gold_label == eval_label:
             if gold_label != predicted_label:
                 eval_data_per_substance[subs_type].fn += 1
-                should = ":::Should Have: {" + label_text(gold_label) + "}, "
-                was = "Was: {" + predicted_label + "} -- "
-                eval_data_per_substance[subs_type].fn_values.append(subs_type + should + was + text)
+                should = "GOLD: {" + label_text(gold_label) + "}, "
+                was = "PREDICTED: {" + predicted_label + "} -- "
+                eval_data_per_substance[subs_type].fn_values.append(should + was + text)
 
 
 def label_text(label):
