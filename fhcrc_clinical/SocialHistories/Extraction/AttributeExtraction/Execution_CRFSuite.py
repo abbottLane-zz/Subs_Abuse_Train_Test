@@ -2,7 +2,7 @@ import nltk
 import pycrfsuite
 
 from DataModeling.DataModels import Attribute
-from Extraction.AttributeExtraction.Processing_CRFSuite import sent2features, tokenize_sentences
+from Extraction.AttributeExtraction.Processing_CRFSuite import sent2features, tokenize_sentences, standardize_tokens
 from SystemUtilities.Configuration import ATTRIB_EXTRACTION_DIR_HOME
 from SystemUtilities.Globals import entity_types
 from SystemUtilities.Parameter_Configuration import SENTENCE_TOK_PATTERN
