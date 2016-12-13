@@ -1,8 +1,11 @@
+import traceback
+
 import nltk
 import pycrfsuite
 
 from DataModeling.DataModels import Attribute
-from Extraction.AttributeExtraction.Processing_CRFSuite import sent2features, tokenize_sentences, standardize_tokens
+from Extraction.AttributeExtraction.Processing_CRFSuite import sent2features, tokenize_sentences, standardize_tokens, \
+    standardize_tokens_list
 from SystemUtilities.Configuration import ATTRIB_EXTRACTION_DIR_HOME
 from SystemUtilities.Globals import entity_types
 from SystemUtilities.Parameter_Configuration import SENTENCE_TOK_PATTERN
@@ -37,12 +40,16 @@ def test(test_sents, model_name, type):
         # Recover spans
         tokenized_text, spans = recover_spans(sent_obj.text)
         # Standardize dates, nums, amounts
-        #tokenized_text = standardize_tokens(tokenized_text)
+        tokenized_text = standardize_tokens(tokenized_text)
+        # combine standardized and pos-tagged token for input into vectorizer
+        vectorizer_input = combine_tokens(tokenized_text, tagged_sent)
+        # Generate feature vectors
+        feature_vectors = sent2features(vectorizer_input)
         # Predict type sequence
-        predictions = tagger.tag(sent2features(tagged_sent))
+        predictions = tagger.tag(feature_vectors)
         probability = tagger.probability(predictions)
 
-        classified_text = zip(tokenized_text,predictions)
+        classified_text = zip(tokenized_text, predictions)
 
         # Expand tuple to have span as well as probability
         final_class_and_span = list()
@@ -100,3 +107,13 @@ def get_attributes(crf_classification_tuple_list):
             attribs.append(attrib)
         i += 1
     return attribs
+
+
+def combine_tokens(standardized_toks, tagged_toks):
+    assert (len(standardized_toks) == len(tagged_toks))
+    new_token_tuples = list()
+    for i in range(len(standardized_toks)):
+        new_tuple = (standardized_toks[i], tagged_toks[i][1])
+        new_token_tuples.append(new_tuple)
+    return new_token_tuples
+

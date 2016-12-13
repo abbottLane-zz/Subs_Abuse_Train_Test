@@ -17,7 +17,7 @@ def train(patients, model_path=ATTRIB_EXTRACTION_DIR_HOME):
         model_name = os.path.join(model_path, "model-" + type + ".ser.gz")
         training_sents, training_labels = load_train_data(sentence_objs,type)
         #  standardize DATES, NUM, AMT
-        #training_sents = standardize_tokens_list(training_sents)
+        training_sents = standardize_tokens_list(training_sents)
         # DEBUG
         Debug_Methods.write_training_data_as_file(training_sents, training_labels, sentence_objs)
         # get features and labels

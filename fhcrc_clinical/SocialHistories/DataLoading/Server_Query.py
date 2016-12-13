@@ -6,7 +6,7 @@ from DataModeling.DataModels import DocumentEvent, AnnotatedAttribute, Span
 
 
 def main():
-    '''Runs a standalone test version of the Server Query '''
+    ''' Runs a standalone test version of the Server Query '''
     cur = __get_server_connection()
     results = __execute_data_pull(cur, "train") # possible values: "train" and "test"
     for r in results:
@@ -16,7 +16,7 @@ def main():
 
 
 def get_labkey_test_data():
-    '''Returns test data in labkey derived from the set of job_ids defined in the DataLoadingGlobals.py file'''
+    ''' Returns test data in labkey derived from the set of job_ids defined in the DataLoadingGlobals.py file'''
     cur = __get_server_connection()
     results = __execute_data_pull(cur, "test")
     patient_doc_annotations = __organize_data(results)
